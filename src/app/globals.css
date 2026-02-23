@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dynamic Theme Variables - Initial Defaults */
+  --primary-color: #0070D1;
+  --bg-color: #0B0B0F;
+  --text-color: #FFFFFF;
+  --accent-color: #3192FF;
+
+  /* Next.js Surface Colors */
+  --background: var(--bg-color);
+  --foreground: var(--text-color);
+
+  --primary: var(--primary-color);
+  --primary-foreground: #FFFFFF;
+
+  --success: #10b981;
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .shadow-glow {
+    box-shadow: 0 0 20px var(--primary-color);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px var(--primary-color);
+  }
+
+  .bg-glass {
+    background: rgba(13, 13, 13, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #005bb5;
+}
+
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateY(1000%);
+    opacity: 0;
+  }
+}
+
+.animate-scan {
+  animation: scan 3s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 10px var(--primary-color);
+  }
+
+  50% {
+    box-shadow: 0 0 30px var(--primary-color);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-gold {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0));
+  }
+
+  50% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
+  }
+
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0));
+  }
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 0.8s ease-in-out infinite;
+}

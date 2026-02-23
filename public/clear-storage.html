@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>مسح Storage - Clear Storage</title>
+</head>
+<body>
+    <h1>جاري مسح البيانات المخزنة... Clearing Storage...</h1>
+    <script>
+        // Clear old localStorage to fix QuotaExceededError
+        try {
+            // Remove large data
+            localStorage.removeItem('clic7_logs');
+            localStorage.removeItem('clic7_activity');
+            localStorage.removeItem('clic7_cache');
+            
+            // Clear any malformed data
+            for (let key in localStorage) {
+                if (localStorage.hasOwnProperty(key)) {
+                    try {
+                        const value = localStorage.getItem(key);
+                        JSON.parse(value);
+                    } catch (e) {
+                        // Remove malformed JSON
+                        localStorage.removeItem(key);
+                    }
+                }
+            }
+            
+            console.log('✅ Storage cleared successfully');
+            document.body.innerHTML = '<h1>✅ تم مسح البيانات - Storage Cleared Successfully!</h1><p>جميع البيانات القديمة تم حذفها. You can now go back to the app.</p>';
+            setTimeout(() => window.location.href = '/', 2000);
+        } catch (e) {
+            console.error('Error clearing storage:', e);
+            document.body.innerHTML = '<h1>❌ خطأ - Error!</h1><p>' + e.message + '</p>';
+        }
+    </script>
+</body>
+</html>
